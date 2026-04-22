@@ -12,4 +12,8 @@ export class HeroService {
 
     return hero;
   }
+
+  async findAll() {
+    return await this.prisma.hero.findMany();
+  }
 }
