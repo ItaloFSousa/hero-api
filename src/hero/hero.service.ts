@@ -31,4 +31,18 @@ export class HeroService {
       where: { id },
     });
   }
+
+  async delete(id: number) {
+    const heroExists = await this.prisma.hero.findUnique({
+      where: { id },
+    });
+
+    if (!heroExists) {
+      throw new Error('Herói não encontrado');
+    }
+
+    return await this.prisma.hero.delete({
+      where: { id },
+    });
+  }
 }
