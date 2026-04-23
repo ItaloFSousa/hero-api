@@ -45,4 +45,16 @@ export class HeroService {
       where: { id },
     });
   }
+
+  async getById(id: number) {
+    const hero = await this.prisma.hero.findUnique({
+      where: { id },
+    });
+
+    if (!hero) {
+      throw new Error('Herói não encontrado');
+    }
+
+    return hero;
+  }
 }
